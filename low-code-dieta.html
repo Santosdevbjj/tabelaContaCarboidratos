@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Menu Low-Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <!-- Container Principal (simulando a interface do Lovable) -->
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl">
+        <h1 class="text-3xl font-bold text-center mb-2">Gerador de Menu Diário</h1>
+        <p class="text-center text-sm mb-6 text-gray-500">Uma simulação de um app Low-Code para dietas terapêuticas.</p>
+
+        <!-- Seção de Ações -->
+        <div class="flex flex-col items-center mb-6">
+            <button id="generateMenuBtn" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-blue-700 transition duration-300">
+                Gerar Meu Menu de Hoje
+            </button>
+        </div>
+
+        <!-- Mensagem de carregamento -->
+        <div id="loading" class="hidden text-center text-gray-500 font-medium">
+            Gerando seu menu...
+        </div>
+
+        <!-- Mensagem de erro -->
+        <div id="error-message" class="hidden text-center text-red-500 font-medium">
+            <!-- Mensagens de erro serão exibidas aqui -->
+        </div>
+        
+        <!-- Mensagem de sucesso -->
+        <div id="success-message" class="hidden text-center text-green-500 font-medium mb-4">
+            Menu gerado com sucesso!
+        </div>
+
+        <!-- Seção do Menu Gerado -->
+        <div id="menu-container" class="hidden">
+            <h2 class="text-2xl font-semibold mb-4 text-center">Seu Menu Diário</h2>
+            <div id="menu-content" class="space-y-6">
+                <!-- Conteúdo do menu será injetado aqui pelo JavaScript -->
+            </div>
+            <div class="mt-6 text-center text-sm font-medium">
+                <span id="total-carbs" class="bg-gray-200 text-gray-800 py-2 px-4 rounded-full">Carboidratos Totais: 0g</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Simulação do back-end do Make
+        const data = [
+            { "CHO(g)": 0.00, "Alimento": "AGRIÃO (PICADO)", "Medida Usual": "COLHER DE SOPA CHEIA", "g ou ml": 7.00, "Calorias (kcal)": 2.00 },
+            { "CHO(g)": 0.00, "Alimento": "ALCATRA MAGRA ASSADA OU GRELHADA", "Medida Usual": "BIFE MEDIO", "g ou ml": 100.00, "Calorias (kcal)": 340.00 },
+            { "CHO(g)": 0.00, "Alimento": "OVO DE GALINHA", "Medida Usual": "UNIDADE GRANDE", "g ou ml": 50.00, "Calorias (kcal)": 75.00 },
+            { "CHO(g)": 1.00, "Alimento": "TOMATE CRU (PICADO)", "Medida Usual": "COLHER DE SOPA CHEIA", "g ou ml": 14.00, "Calorias (kcal)": 3.00 },
+            { "CHO(g)": 2.00, "Alimento": "SUCO DE COUVE (PURA)", "Medida Usual": "COPO", "g ou ml": 250.00, "Calorias (kcal)": 10.00 },
+            { "CHO(g)": 3.00, "Alimento": "REPOLHO (PICADO)", "Medida Usual": "COLHER DE SOPA CHEIA", "g ou ml": 14.00, "Calorias (kcal)": 3.00 },
+            { "CHO(g)": 5.00, "Alimento": "ARROZ INTEGRAL COZIDO", "Medida Usual": "COLHER DE SOPA CHEIA", "g ou ml": 20.00, "Calorias (kcal)": 30.00 },
+            { "CHO(g)": 5.00, "Alimento": "BRÓCOLIS", "Medida Usual": "XICARA PEQUENA", "g ou ml": 50.00, "Calorias (kcal)": 15.00 },
+            { "CHO(g)": 1.00, "Alimento": "SARDINHA", "Medida Usual": "UNIDADE", "g ou ml": 40.00, "Calorias (kcal)": 48.00 },
+            { "CHO(g)": 0.00, "Alimento": "CREME DE LEITE", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15.00, "Calorias (kcal)": 40.00 },
+            { "CHO(g)": 0.00, "Alimento": "MAIONESE", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15.00, "Calorias (kcal)": 90.00 },
+            { "CHO(g)": 1.50, "Alimento": "MORANGO", "Medida Usual": "UNIDADE", "g ou ml": 15.00, "Calorias (kcal)": 5.00 },
+            { "CHO(g)": 1.00, "Alimento": "AZEITONAS", "Medida Usual": "UNIDADE", "g ou ml": 4.00, "Calorias (kcal)": 5.00 },
+            { "CHO(g)": 0.00, "Alimento": "FRANGO GRELHADO", "Medida Usual": "PEDAÇO MEDIO", "g ou ml": 100.00, "Calorias (kcal)": 165.00 },
+            { "CHO(g)": 0.00, "Alimento": "TOUCINHO", "Medida Usual": "PEDAÇO MEDIO", "g ou ml": 25.00, "Calorias (kcal)": 140.00 },
+            { "CHO(g)": 2.50, "Alimento": "CENOURA COZIDA", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15.00, "Calorias (kcal)": 6.00 },
+            { "CHO(g)": 1.00, "Alimento": "SALSA", "Medida Usual": "COLHER DE SOPA PICADA", "g ou ml": 5.00, "Calorias (kcal)": 2.00 }
+        ];
+
+        const generateMenuBtn = document.getElementById('generateMenuBtn');
+        const menuContainer = document.getElementById('menu-container');
+        const menuContent = document.getElementById('menu-content');
+        const totalCarbsSpan = document.getElementById('total-carbs');
+        const loadingDiv = document.getElementById('loading');
+        const errorMessageDiv = document.getElementById('error-message');
+        const successMessageDiv = document.getElementById('success-message');
+
+        const MEAL_CATEGORIES = [
+            'Café da manhã',
+            'Lanche da manhã',
+            'Almoço',
+            'Lanche da tarde',
+            'Jantar',
+            'Lanche da noite'
+        ];
+
+        generateMenuBtn.addEventListener('click', () => {
+            // Limpa mensagens e conteúdo anterior
+            loadingDiv.classList.remove('hidden');
+            menuContainer.classList.add('hidden');
+            errorMessageDiv.classList.add('hidden');
+            successMessageDiv.classList.add('hidden');
+            menuContent.innerHTML = '';
+            totalCarbsSpan.textContent = 'Carboidratos Totais: 0g';
+
+            setTimeout(() => {
+                try {
+                    const menu = generateDailyMenu(data, 15);
+                    renderMenu(menu);
+                    loadingDiv.classList.add('hidden');
+                    successMessageDiv.classList.remove('hidden');
+                    menuContainer.classList.remove('hidden');
+                } catch (error) {
+                    loadingDiv.classList.add('hidden');
+                    errorMessageDiv.textContent = error.message;
+                    errorMessageDiv.classList.remove('hidden');
+                }
+            }, 1500); // Atraso de 1.5s para simular a chamada API/Make
+        });
+
+        // Função que simula o "cérebro" do Make
+        function generateDailyMenu(carbTable, dailyLimit) {
+            let totalCarbs = 0;
+            let menu = {};
+            MEAL_CATEGORIES.forEach(meal => menu[meal] = []);
+
+            const carbFoods = carbTable.filter(food => food["CHO(g)"] > 0).sort(() => 0.5 - Math.random());
+            const zeroCarbFoods = carbTable.filter(food => food["CHO(g)"] === 0).sort(() => 0.5 - Math.random());
+            
+            // Adicionar 1 alimento de 0 CHO para cada refeição
+            MEAL_CATEGORIES.forEach(meal => {
+                if (zeroCarbFoods.length > 0) {
+                    menu[meal].push(zeroCarbFoods.shift());
+                }
+            });
+            
+            // Adicionar alimentos com CHO até o limite
+            carbFoods.forEach(food => {
+                if (totalCarbs + food["CHO(g)"] <= dailyLimit) {
+                    const randomMeal = MEAL_CATEGORIES[Math.floor(Math.random() * MEAL_CATEGORIES.length)];
+                    menu[randomMeal].push(food);
+                    totalCarbs += food["CHO(g)"];
+                }
+            });
+
+            // Adicionar mais alimentos de 0 CHO para completar o menu
+            while (zeroCarbFoods.length > 0) {
+                const randomMeal = MEAL_CATEGORIES[Math.floor(Math.random() * MEAL_CATEGORIES.length)];
+                menu[randomMeal].push(zeroCarbFoods.shift());
+            }
+
+            if (Object.values(menu).every(meal => meal.length === 0)) {
+                throw new Error("Não foi possível gerar um menu com os dados disponíveis. Tente novamente.");
+            }
+            
+            const finalTotalCarbs = Object.values(menu).flat().reduce((sum, food) => sum + food["CHO(g)"], 0);
+
+            return { menu, totalCarbs: finalTotalCarbs };
+        }
+
+        // Função que simula a interface do Lovable renderizando o menu
+        function renderMenu(menuData) {
+            menuContent.innerHTML = '';
+            const { menu, totalCarbs } = menuData;
+
+            MEAL_CATEGORIES.forEach(meal => {
+                if (menu[meal].length > 0) {
+                    const mealDiv = document.createElement('div');
+                    mealDiv.className = 'bg-gray-100 p-4 rounded-lg';
+                    
+                    const mealTitle = document.createElement('h3');
+                    mealTitle.className = 'text-lg font-bold mb-2';
+                    mealTitle.textContent = meal;
+                    mealDiv.appendChild(mealTitle);
+
+                    const mealList = document.createElement('ul');
+                    mealList.className = 'list-disc list-inside space-y-1';
+                    menu[meal].forEach(food => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${food.Alimento} (${food["CHO(g)"]}g CHO)`;
+                        mealList.appendChild(listItem);
+                    });
+                    mealDiv.appendChild(mealList);
+                    menuContent.appendChild(mealDiv);
+                }
+            });
+            totalCarbsSpan.textContent = `Carboidratos Totais: ${totalCarbs.toFixed(2)}g`;
+        }
+
+    </script>
+</body>
+</html>
+
