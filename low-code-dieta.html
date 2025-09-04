@@ -58,23 +58,28 @@
     <script>
         // Simulação do back-end do Make
         const data = [
-            { "CHO(g)": 0.00, "Alimento": "AGRIÃO (PICADO)", "Medida Usual": "COLHER DE SOPA CHEIA", "g ou ml": 7.00, "Calorias (kcal)": 2.00 },
-            { "CHO(g)": 0.00, "Alimento": "ALCATRA MAGRA ASSADA OU GRELHADA", "Medida Usual": "BIFE MEDIO", "g ou ml": 100.00, "Calorias (kcal)": 340.00 },
-            { "CHO(g)": 0.00, "Alimento": "OVO DE GALINHA", "Medida Usual": "UNIDADE GRANDE", "g ou ml": 50.00, "Calorias (kcal)": 75.00 },
-            { "CHO(g)": 1.00, "Alimento": "TOMATE CRU (PICADO)", "Medida Usual": "COLHER DE SOPA CHEIA", "g ou ml": 14.00, "Calorias (kcal)": 3.00 },
-            { "CHO(g)": 2.00, "Alimento": "SUCO DE COUVE (PURA)", "Medida Usual": "COPO", "g ou ml": 250.00, "Calorias (kcal)": 10.00 },
-            { "CHO(g)": 3.00, "Alimento": "REPOLHO (PICADO)", "Medida Usual": "COLHER DE SOPA CHEIA", "g ou ml": 14.00, "Calorias (kcal)": 3.00 },
-            { "CHO(g)": 5.00, "Alimento": "ARROZ INTEGRAL COZIDO", "Medida Usual": "COLHER DE SOPA CHEIA", "g ou ml": 20.00, "Calorias (kcal)": 30.00 },
-            { "CHO(g)": 5.00, "Alimento": "BRÓCOLIS", "Medida Usual": "XICARA PEQUENA", "g ou ml": 50.00, "Calorias (kcal)": 15.00 },
-            { "CHO(g)": 1.00, "Alimento": "SARDINHA", "Medida Usual": "UNIDADE", "g ou ml": 40.00, "Calorias (kcal)": 48.00 },
-            { "CHO(g)": 0.00, "Alimento": "CREME DE LEITE", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15.00, "Calorias (kcal)": 40.00 },
-            { "CHO(g)": 0.00, "Alimento": "MAIONESE", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15.00, "Calorias (kcal)": 90.00 },
-            { "CHO(g)": 1.50, "Alimento": "MORANGO", "Medida Usual": "UNIDADE", "g ou ml": 15.00, "Calorias (kcal)": 5.00 },
-            { "CHO(g)": 1.00, "Alimento": "AZEITONAS", "Medida Usual": "UNIDADE", "g ou ml": 4.00, "Calorias (kcal)": 5.00 },
-            { "CHO(g)": 0.00, "Alimento": "FRANGO GRELHADO", "Medida Usual": "PEDAÇO MEDIO", "g ou ml": 100.00, "Calorias (kcal)": 165.00 },
-            { "CHO(g)": 0.00, "Alimento": "TOUCINHO", "Medida Usual": "PEDAÇO MEDIO", "g ou ml": 25.00, "Calorias (kcal)": 140.00 },
-            { "CHO(g)": 2.50, "Alimento": "CENOURA COZIDA", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15.00, "Calorias (kcal)": 6.00 },
-            { "CHO(g)": 1.00, "Alimento": "SALSA", "Medida Usual": "COLHER DE SOPA PICADA", "g ou ml": 5.00, "Calorias (kcal)": 2.00 }
+            // Itens de 0g CHO
+            { "CHO(g)": 0.00, "Alimento": "CAFÉ DESCAFEINADO", "Medida Usual": "XÍCARA", "g ou ml": 240, "Calorias (kcal)": 0 },
+            { "CHO(g)": 0.00, "Alimento": "SOJA COZIDA", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15, "Calorias (kcal)": 20 },
+            { "CHO(g)": 0.00, "Alimento": "OVO COZIDO", "Medida Usual": "UNIDADE", "g ou ml": 50, "Calorias (kcal)": 75 },
+            { "CHO(g)": 0.00, "Alimento": "MAIONESE", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15, "Calorias (kcal)": 90 },
+            { "CHO(g)": 0.00, "Alimento": "CREME DE LEITE", "Medida Usual": "COPO", "g ou ml": 200, "Calorias (kcal)": 400 },
+            { "CHO(g)": 0.00, "Alimento": "LEITE DE COCO", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15, "Calorias (kcal)": 30 },
+            { "CHO(g)": 0.00, "Alimento": "AZEITONAS VERDES", "Medida Usual": "UNIDADE", "g ou ml": 4, "Calorias (kcal)": 5 },
+            { "CHO(g)": 0.00, "Alimento": "AGRIÃO", "Medida Usual": "FOLHAS", "g ou ml": 10, "Calorias (kcal)": 2 },
+            { "CHO(g)": 0.00, "Alimento": "RÚCULA", "Medida Usual": "FOLHAS", "g ou ml": 10, "Calorias (kcal)": 3 },
+            { "CHO(g)": 0.00, "Alimento": "SALSÃO", "Medida Usual": "FOLHAS", "g ou ml": 10, "Calorias (kcal)": 2 },
+            { "CHO(g)": 0.00, "Alimento": "ESPINAFRE", "Medida Usual": "FOLHAS", "g ou ml": 10, "Calorias (kcal)": 2 },
+            { "CHO(g)": 0.00, "Alimento": "AZEITE EXTRA", "Medida Usual": "COLHER DE SOPA", "g ou ml": 14, "Calorias (kcal)": 120 },
+            { "CHO(g)": 0.00, "Alimento": "BIFE GRELHADO", "Medida Usual": "BIFE MEDIO", "g ou ml": 100, "Calorias (kcal)": 250 },
+            { "CHO(g)": 0.00, "Alimento": "TORRESMO COZIDO", "Medida Usual": "COLHER DE SOPA", "g ou ml": 15, "Calorias (kcal)": 150 },
+            { "CHO(g)": 0.00, "Alimento": "ASA DE FRANGO GRELHADA", "Medida Usual": "UNIDADE", "g ou ml": 50, "Calorias (kcal)": 100 },
+            { "CHO(g)": 0.00, "Alimento": "QUEIJO REQUEIJÃO", "Medida Usual": "FATIA", "g ou ml": 30, "Calorias (kcal)": 100 },
+            { "CHO(g)": 0.00, "Alimento": "CHÁ DE CAMOMILA", "Medida Usual": "XÍCARA", "g ou ml": 240, "Calorias (kcal)": 0 },
+
+            // Itens com CHO
+            { "CHO(g)": 2.00, "Alimento": "SUCO DE COUVE", "Medida Usual": "COPO", "g ou ml": 250, "Calorias (kcal)": 10 },
+            { "CHO(g)": 12.00, "Alimento": "MARACUJÁ", "Medida Usual": "POLPA", "g ou ml": 100, "Calorias (kcal)": 60 }
         ];
 
         const generateMenuBtn = document.getElementById('generateMenuBtn');
@@ -95,7 +100,6 @@
         ];
 
         generateMenuBtn.addEventListener('click', () => {
-            // Limpa mensagens e conteúdo anterior
             loadingDiv.classList.remove('hidden');
             menuContainer.classList.add('hidden');
             errorMessageDiv.classList.add('hidden');
@@ -115,45 +119,66 @@
                     errorMessageDiv.textContent = error.message;
                     errorMessageDiv.classList.remove('hidden');
                 }
-            }, 1500); // Atraso de 1.5s para simular a chamada API/Make
+            }, 1500); // Atraso para simular a chamada API/Make
         });
 
-        // Função que simula o "cérebro" do Make
+        // Função que simula o "cérebro" do Make, com a lógica do plano alimentar
         function generateDailyMenu(carbTable, dailyLimit) {
             let totalCarbs = 0;
             let menu = {};
             MEAL_CATEGORIES.forEach(meal => menu[meal] = []);
 
-            const carbFoods = carbTable.filter(food => food["CHO(g)"] > 0).sort(() => 0.5 - Math.random());
-            const zeroCarbFoods = carbTable.filter(food => food["CHO(g)"] === 0).sort(() => 0.5 - Math.random());
-            
-            // Adicionar 1 alimento de 0 CHO para cada refeição
-            MEAL_CATEGORIES.forEach(meal => {
-                if (zeroCarbFoods.length > 0) {
-                    menu[meal].push(zeroCarbFoods.shift());
+            const foodsWithCarbs = carbTable.filter(food => food["CHO(g)"] > 0);
+            const foodsWithoutCarbs = carbTable.filter(food => food["CHO(g)"] === 0);
+
+            // Tentar adicionar alimentos específicos do Menu 21 primeiro para as refeições
+            const menu21Items = [
+                { meal: 'Café da manhã', foods: ["CAFÉ DESCAFEINADO", "SOJA COZIDA", "OVO COZIDO", "SUCO DE COUVE"] },
+                { meal: 'Lanche da manhã', foods: ["CREME DE LEITE", "LEITE DE COCO", "AZEITONAS VERDES"] },
+                { meal: 'Almoço', foods: ["AGRIÃO", "RÚCULA", "SALSÃO", "ESPINAFRE", "AZEITE EXTRA", "BIFE GRELHADO", "MAIONESE"] },
+                { meal: 'Lanche da tarde', foods: ["TORRESMO COZIDO", "AGRIÃO", "RÚCULA", "AZEITE EXTRA", "ASA DE FRANGO GRELHADA", "MARACUJÁ"] },
+                { meal: 'Jantar', foods: ["BIFE GRELHADO", "AGRIÃO", "ESPINAFRE", "AZEITE EXTRA", "MAIONESE"] },
+                { meal: 'Lanche da noite', foods: ["CREME DE LEITE", "LEITE DE COCO", "QUEIJO REQUEIJÃO", "AZEITONAS VERDES", "CHÁ DE CAMOMILA"] }
+            ];
+
+            menu21Items.forEach(item => {
+                item.foods.forEach(foodName => {
+                    const foundFood = carbTable.find(f => f.Alimento === foodName);
+                    if (foundFood && totalCarbs + foundFood["CHO(g)"] <= dailyLimit) {
+                        menu[item.meal].push(foundFood);
+                        totalCarbs += foundFood["CHO(g)"];
+                    }
+                });
+            });
+
+            // Se o total de CHO ainda for baixo, adicione mais itens aleatórios
+            const shuffledZeroCarbFoods = foodsWithoutCarbs.sort(() => 0.5 - Math.random());
+            const shuffledCarbFoods = foodsWithCarbs.sort(() => 0.5 - Math.random());
+
+            // Adicionar mais alimentos de 0 CHO para preencher o menu
+            shuffledZeroCarbFoods.forEach(food => {
+                const randomMeal = MEAL_CATEGORIES[Math.floor(Math.random() * MEAL_CATEGORIES.length)];
+                if (menu[randomMeal].length < 3) { // Limita o número de itens por refeição
+                    menu[randomMeal].push(food);
                 }
             });
-            
-            // Adicionar alimentos com CHO até o limite
-            carbFoods.forEach(food => {
+
+            // Adicionar mais alimentos com CHO, se houver espaço
+            shuffledCarbFoods.forEach(food => {
                 if (totalCarbs + food["CHO(g)"] <= dailyLimit) {
                     const randomMeal = MEAL_CATEGORIES[Math.floor(Math.random() * MEAL_CATEGORIES.length)];
-                    menu[randomMeal].push(food);
-                    totalCarbs += food["CHO(g)"];
+                    if (menu[randomMeal].length < 3) {
+                        menu[randomMeal].push(food);
+                        totalCarbs += food["CHO(g)"];
+                    }
                 }
             });
-
-            // Adicionar mais alimentos de 0 CHO para completar o menu
-            while (zeroCarbFoods.length > 0) {
-                const randomMeal = MEAL_CATEGORIES[Math.floor(Math.random() * MEAL_CATEGORIES.length)];
-                menu[randomMeal].push(zeroCarbFoods.shift());
-            }
-
-            if (Object.values(menu).every(meal => meal.length === 0)) {
-                throw new Error("Não foi possível gerar um menu com os dados disponíveis. Tente novamente.");
-            }
             
             const finalTotalCarbs = Object.values(menu).flat().reduce((sum, food) => sum + food["CHO(g)"], 0);
+
+            if (finalTotalCarbs > dailyLimit) {
+                throw new Error("Erro na lógica: Limite de carboidratos excedido.");
+            }
 
             return { menu, totalCarbs: finalTotalCarbs };
         }
@@ -190,4 +215,3 @@
     </script>
 </body>
 </html>
-
