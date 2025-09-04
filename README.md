@@ -1,2 +1,4 @@
-# tabelaContaCarboidratos
-Tabela Para Contagem de Carboidratos 
+## Tabela Para Contagem de Carboidratos.
+
+Apresenta uma tabela para contagem de carboidratos.
+
